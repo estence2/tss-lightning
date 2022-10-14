@@ -8,11 +8,14 @@ fi
 #get project id
 read -p "
 Enter project ID or press enter to skip: " prj_id
-#if main_query not null, add project id
-if [[ -n "$main_query" ]]; then
-  main_query="$main_query AND log:\"project $prj_id\""
-else
-  main_query="log:\"project $prj_id\""
+#if project id not null
+if [[ -n "$prj_id" ]]; then
+  #if main_query not null, add project id
+  if [[ -n "$main_query" ]]; then
+    main_query="$main_query AND log:\"project $prj_id\""
+  else
+    main_query="log:\"project $prj_id\""
+  fi
 fi
 read -p "
 1. campaign
@@ -42,22 +45,26 @@ if [[ -n "$id_type" ]]; then
     fi
     #check if they want to check validate, publish, or update enabled calls
     read -p "
-    1. Validate? (save draft)
-    2. Publish?
-    3. Turn on?
-    Enter corresponding number or press enter to skip: " id
+1. Validate? (save draft)
+2. Publish?
+3. Turn on?
+Enter corresponding number or press enter to skip: " id_wkflw
     #if id not null
-    if [[ -n "$id" ]]; then
+    if [[ -n "$id_wkflw" ]]; then
       #if validate workflow
-      if [[ $id == 1 ]]; then
+      if [[ $id_wkflw == 1 ]]; then
         subquery2="log:\"workflows/validateWorkflow\""
       #if publish workflow
-      elif [[ $id == 2 ]]; then
+      elif [[ $id_wkflw == 2 ]]; then
         subquery2="log:\"workflows/publish\""
-      elif [[ $id == 3 ]]; then
+      elif [[ $id_wkflw == 3 ]]; then
         subquery2="log:\"workflows/updateEnabled\""
       fi
-      subquery="$subquery AND $subquery2"
+      if [[ -n $subquery ]]; then
+        subquery="$subquery AND $subquery2"
+      else
+        subquery="$subquery2"
+      fi
     fi
   #if list
   elif [[ $id_type == 4 ]]; then
@@ -79,7 +86,11 @@ if [[ -n "$id_type" ]]; then
 fi
 #check if subquery not null and create main query
 if [[ -n $subquery ]]; then
-  main_query="$main_query AND $subquery"
+  if [[ -n $main_query ]]; then
+    main_query="$main_query AND $subquery"
+  else
+    main_query="$subquery"
+  fi
 fi
 #output query and navigate to kube
 echo "$main_query
