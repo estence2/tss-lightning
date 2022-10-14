@@ -32,6 +32,7 @@ if [[ -n "$id_type" ]]; then
     subquery="project.id : $id"
   fi
 fi
+#make final query
 #check if main_query not null
 if [[ -n "$main_query" ]]; then
   #check if subquery not null
