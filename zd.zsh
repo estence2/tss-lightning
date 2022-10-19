@@ -12,7 +12,7 @@ tss_array=(
 "Rachel.Wu@iterable.com"
 "Jena.Chakour@iterable.com"
 "Sarah.Liddle@iterable.com"
-"Shane.Williams@iterable.com"
+"Shanae.Williams@iterable.com"
 "Kaylie.Verner@iterable.com"
 "Grace.Kiburi@iterable.com"
 "Tanwir.Ahmed@iterable.com"
@@ -47,24 +47,60 @@ tss_array=(
 "Neal.Ichinohe@iterable.com"
 "Sarah.Mayne@iterable.com"
 "Stassi.Carrington@iterable.com"
+"Ellen.Stence@iterable.com"
 )
 #ask for assignee name
-read -p "Acceptable formats include:
+read -p "Acceptable formats include all or first few characters of:
 1. First
 2. Last
 3. First Last
-Enter name of tss agent or press enter to skip: " first last
-#iterate over tss_array
-for val in "${tss_array[@]}";
-do
-  if [[ $val = "$first"* ]]; then
-    echo "$val matched $first query"
-  fi
-done
 
-#if (( $tss_array[(0)"Michael"] ));
-#then
-#  echo "$first $last is in the array!"
-#else
-#  echo "you don't know how to write this function"
-#fi
+Enter name of tss agent or press enter to skip: " first last
+#if there was input, check array
+if [[ -n $first ]]; then
+  #correct casing
+  first=$(echo "$first" | awk '{print tolower($0)}')
+  last=$(echo "$last" | awk '{print tolower($0)}')
+  #iterate over tss_array
+  for val in "${tss_array[@]}";
+  do
+    #lowercase list values
+    val=$(echo $val | tr '[A-Z]' '[a-z]')
+    #if last name exists, we know there were 2 inputs
+    if [[ -n $last ]]; then
+      if [[ $val = "$first"*."$last"*"@iterable.com" ]]; then
+        assignee="assignee:$val"
+      fi
+    #if there was a single input
+    elif [[ -n $first ]]; then
+      if [[ $val = *"$first"*"@iterable.com" ]]; then
+        assignee="assignee:$val"
+      fi
+    fi
+  done
+fi
+#ask for org name
+read -p "
+Enter name of organization or press enter to skip: " org
+#if org not blank
+if [[ -n $org ]]; then
+  organization="organization:$org"
+fi
+#get number of days to look back
+read -p "
+Enter number of days to search back or press enter to skip: " days
+if [[ -n $days ]]; then
+  search_date=$(date -v -${days}d +%D)
+  created="created>$search_date"
+fi
+#include chats?
+read -p "
+Include chats? y or n? or press enter to skip: " chats
+if [[ -n $chats ]]; then
+  if [[ $chats = "n" ]]; then
+    include_chats="-subject:chat"
+  fi
+fi
+#final ZD search
+echo "
+$assignee $organization $created $include_chats order_by:created sort:desc type:ticket"
