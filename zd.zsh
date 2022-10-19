@@ -49,8 +49,18 @@ tss_array=(
 "Stassi.Carrington@iterable.com"
 "Ellen.Stence@iterable.com"
 )
+#get search terms
+read -p "Enter text to search by: " text
+read -p "
+Exact match? y or n? " match
+if [[ $match = "y" ]]; then
+  search="\"$text\""
+else
+  search="$text"
+fi
 #ask for assignee name
-read -p "Acceptable formats include all or first few characters of:
+read -p "
+Acceptable formats include all or first few characters of:
 1. First
 2. Last
 3. First Last
@@ -84,7 +94,7 @@ read -p "
 Enter name of organization or press enter to skip: " org
 #if org not blank
 if [[ -n $org ]]; then
-  organization="organization:$org"
+  organization="organization:\'$org\'"
 fi
 #get number of days to look back
 read -p "
@@ -103,4 +113,4 @@ if [[ -n $chats ]]; then
 fi
 #final ZD search
 echo "
-$assignee $organization $created $include_chats order_by:created sort:desc type:ticket"
+$search $assignee $organization $created $include_chats order_by:created sort:desc type:ticket"
