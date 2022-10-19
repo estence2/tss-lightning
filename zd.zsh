@@ -94,7 +94,7 @@ read -p "
 Enter name of organization or press enter to skip: " org
 #if org not blank
 if [[ -n $org ]]; then
-  organization="organization:\'$org\'"
+  organization="organization:'$org'"
 fi
 #get number of days to look back
 read -p "
