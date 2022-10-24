@@ -9,17 +9,19 @@ Save other .zsh files to ~/bin/
 See MBO google sheets document on full demonstration
 
 Aliases included but not limited to:
-1. hash <input>
+1. myprj
+  *output project settings info and open template from project in new tab
+2. hash <input>
   *256 hash any input. will only accept a single input. spaces/new lines will be ignored
 
-2. self <optional number>
+3. self <optional number>
   *256 hash your own email, can add a number for +# alias
-  ***Must change lines 41 and 44 to reflect your own email address***
+  ***Must change lines 42 and 45 to reflect your own email address***
 
-3. b2a <url>
+4. b2a <url>
   *change a boss link to an app link to share with customers!
 
-4. a2b <url>
+4.1 a2b <url>
   *change an app link to a boss link for easy boss access!
 
 5. blobby
@@ -36,14 +38,16 @@ Aliases included but not limited to:
   *if you use dd/MM/YYYY format comment out line 72 and remove comment from line 71
   *check if a given date is x number of days from today - ever wondered if a date was on or after 60 days ago? Today is your lucky day!
 
-8. e2
+8. zd
+  *follow the prompts for an "easier" way to search zendesk
+ 
+9. e2
   *create simple e2 queries by following the prompts
   *enter unhashed email - this will do the work for you!
   *automatically opens e2 in Google Chrome browser with your search populated!
 
-9. kube
+10. kube
   *same as e2 but for kube!
   *enter as much or as little info as you'd like & rest!
 
-10. zd
-  *follow the prompts for an "easier" way to search zendesk
+
