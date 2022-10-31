@@ -10,7 +10,7 @@ fi
 #get id number
 echo "
 1. campaign
-2. template
+2. template (use this option for proofs)
 3. journey
 4. project"
 read -p "Include the above id's? Enter corresponding number or press enter to skip: " id_type
@@ -32,7 +32,7 @@ if [[ -n "$id_type" ]]; then
     subquery="project.id : $id"
   fi
 fi
-#make final query
+#create final query
 #check if main_query not null
 if [[ -n "$main_query" ]]; then
   #check if subquery not null
@@ -48,4 +48,5 @@ echo "
 $main_query
 
 Redirecting you to events stream..."
+#open e2 search, must use this format or else # gets url encoded to %23
 open -n -a "Google Chrome" --args "https://logs.mon-itbl.co/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_a=(columns:!(),filters:!(),index:'767d3500-5645-11e9-b1e6-07895cd9f6f5',interval:auto,query:(language:kuery,query:'$main_query'),sort:!(!('@timestamp',desc)))"
