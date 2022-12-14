@@ -50,4 +50,5 @@ Aliases included but not limited to:
   *same as e2 but for kube!
   *enter as much or as little info as you'd like & rest!
 
-
+11. visitors_in_node
+  *get visitors in a journey tile
