@@ -1,5 +1,5 @@
 # tss-lightning
-This is my MBO for Q3 2022. A series of command line functions that should help the tss team quick like a fox!
+This is my MBO for Q3 2022. A series of command line functions that should help the tss team work quick like a fox!
 
 Download ohmyzsh from https://ohmyz.sh/
 Save alias.zsh file to ~/.oh_my_zsh/custom
