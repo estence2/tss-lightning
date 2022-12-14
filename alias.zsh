@@ -23,6 +23,9 @@ astxt () {open -e $1}
 #Current time UTC
 utc () {date -u}
 
+#Get random person on tss list
+t1 () {shuf -n 1 ~/bin/tss.team}
+
 ###########################################################
 #1. Get to my project - replace with a link to a template in your project!
 #myprj
@@ -53,6 +56,9 @@ b2a () {echo -n "$1\n" | sed 's/boss.prd-itbl.co/app.iterable.com/g'}
 #a2b <app link>
 a2b () {echo -n "$1\n" | sed 's/app.iterable.com/boss.prd-itbl.co/g'}
 
+#4.2 app url to boss url and open in new tab
+a2b_open () {echo -n "$1\n" | sed 's/app.iterable.com/boss.prd-itbl.co/g' | xargs open}
+
 #5. make blobby url and open page
 #blobby
 blobby () {bash ~/bin/blobby.zsh}
@@ -60,11 +66,10 @@ blobby () {bash ~/bin/blobby.zsh}
 #6. make log_<date>.txt file - take kubernetes log and output it to a more legible format,
 #create a text file and open the text file
 #log <paste log text here>
-log () {( cd "~/Desktop" &&
-echo "$@" | sed -e 's/{/{\n/g' -e 's/}/}\n/g' -e 's/,/,\n/g' -e 's/\\//g' >> log_$(date +"%Y%m%d%H%M%S").txt
+log () {echo "$@" | sed -e 's/{/{\n/g' -e 's/}/}\n/g' -e 's/,/,\n/g' -e 's/\\//g' >> log_$(date +"%Y%m%d%H%M%S").txt
 file=$(ls -t | head -n1)
 echo "New file: $file"
-open $file )
+open $file
 }
 
 #7. get number of days away a given date is
@@ -98,4 +103,9 @@ e2 () {
 #10. write simple Kubes queries
 kube () {
   bash ~/bin/kube.zsh
+}
+
+#11. get visitors in a workflow
+visitors_in_node () {
+  bash ~/bin/visitors_in_workflow_node.zsh
 }
