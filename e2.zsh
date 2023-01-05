@@ -12,7 +12,8 @@ echo "
 1. campaign
 2. template (use this option for proofs)
 3. journey
-4. project"
+4. project
+5. other"
 read -p "Include the above id's? Enter corresponding number or press enter to skip: " id_type
 echo ""
 #check if id_type not null
@@ -30,6 +31,9 @@ if [[ -n "$id_type" ]]; then
   elif [[ $id_type == 4 ]]; then
     read -p "Enter project id: " id
     subquery="project.id : $id"
+  elif [[ $id_type == 5 ]]; then
+    read -p "Enter other query: " id
+    subquery="$id"
   fi
 fi
 #create final query

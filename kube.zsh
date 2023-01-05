@@ -24,6 +24,7 @@ read -p "
 4. list
 5. custom event
 6. user update
+7. other
 Include the above id's? Enter corresponding number or press enter to skip: " id_type
 #if type of id not null
 if [[ -n "$id_type" ]]; then
@@ -82,6 +83,10 @@ Enter corresponding number or press enter to skip: " id_wkflw
   #if users/update call
   elif [[ $id_type == 6 ]]; then
     subquery="(log:\"users/update\" OR log:\"users/bulkUpdate\")"
+  fi
+  elif [[ $id_type == 7 ]]; then
+    read -p "Enter other query: " id
+    subquery="log:\"$id""
   fi
 fi
 #check if subquery not null and create main query
