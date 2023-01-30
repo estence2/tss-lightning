@@ -52,3 +52,6 @@ Aliases included but not limited to:
 
 11. visitors_in_node
   *get visitors in a journey tile
+
+12. api_call
+  *make simple API calls to test in your project
