@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 #get api key
-api_key=$(head -1 ~/bin/api.key)
+api_key=$(head -1 ~/bin/apiCall.config)
 
 #id's from your project
 #replace on line 101
