@@ -109,3 +109,8 @@ kube () {
 visitors_in_node () {
   bash ~/bin/visitors_in_workflow_node.zsh
 }
+
+#12. make simple API calls to your project
+api_call () {
+  bash ~/bin/apiCall.zsh
+}
