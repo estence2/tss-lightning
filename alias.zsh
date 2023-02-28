@@ -26,10 +26,16 @@ utc () {date -u}
 #Get random person on tss list
 t1 () {shuf -n 1 ~/bin/tss.team}
 
+#Go to project settings for current project
+settings () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/settings/project"}
+
+#Get API key
+api () {head ~/bin/tss-lightning/api.key}
+
 ###########################################################
 #1. Get to my project - replace with a link to a template in your project!
 #myprj
-myprj () {open "https://boss.prd-itbl.co/templates/editor?templateId=7157349"
+myprj () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/editor?templateId=7602693"
 echo "Cluster ID: 24
 Project ID: 14523
 Organization ID: 1344"}
