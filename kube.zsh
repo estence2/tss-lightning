@@ -49,6 +49,7 @@ if [[ -n "$id_type" ]]; then
 1. Validate? (save draft)
 2. Publish?
 3. Turn on?
+4. Trigger?
 Enter corresponding number or press enter to skip: " id_wkflw
     #if id not null
     if [[ -n "$id_wkflw" ]]; then
@@ -60,6 +61,8 @@ Enter corresponding number or press enter to skip: " id_wkflw
         subquery2="log:\"workflows/publish\""
       elif [[ $id_wkflw == 3 ]]; then
         subquery2="log:\"workflows/updateEnabled\""
+      elif [[ $id_wkflw == 4 ]]; then
+        subquery2="log:\"workflows/triggerWorkflow\""
       fi
       if [[ -n $subquery ]]; then
         subquery="$subquery AND $subquery2"
@@ -82,7 +85,7 @@ Enter corresponding number or press enter to skip: " id_wkflw
     fi
   #if users/update call
   elif [[ $id_type == 6 ]]; then
-    subquery="(log:\"users/update\" OR log:\"users/bulkUpdate\")"
+    subquery="(log:\"users/update\" OR "bulkUpdate")"
   elif [[ $id_type == 7 ]]; then
     read -p "Enter other query: " id
     subquery="log:\"$id\""
@@ -97,8 +100,12 @@ if [[ -n $subquery ]]; then
   fi
 fi
 #output query and navigate to kube
-echo "$main_query
+echo "$main_query"
 
-Redirecting you to kube..."
+#URL encode + signs
+#main_query={"$main_query" | sed -e 's/+/%2b/g'}
+#echo $main_query
+
+#Redirecting you to kube..."
 #open kube search, must use this format or else # gets url encoded to %23
 open -n -a "Google Chrome" --args "https://logs.mon-itbl.co/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_a=(columns:!(),filters:!(),index:'67eede50-8066-11ec-a886-f5ecefe9e33e',interval:auto,query:(language:kuery,query:'$main_query'),sort:!(!('@timestamp',desc)))"
