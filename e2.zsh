@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 #email or uuid based?
 echo "1. email-based project
-2. uuid-based project"
+2. uuid-based/hybrid project"
 read -p "Email or User ID based project? Enter corresponding number: " projType
 
 #if email based
