@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-#get api key
 api_key=$(head -1 ~/bin/apiCall.config)
 
 #id's from your project
@@ -11,14 +10,14 @@ listId=1988320
 journeyId=327907
 
 #Email based or UUID based
-#echo "
-#1. Email
-#2. UUID"
-#read -p "Email or UUID based project? If empty, default is email: " id
-#check if id not null
-#if [[ -z "$id" ]]; then
-#   id=1
-#fi
+echo "
+1. Email
+2. UUID"
+read -p "Email or UUID based project? If empty, default is email: " id
+#check if id is 2
+if [[ $id == 2 ]]; then
+    api_key=$(head -1 ~/bin/apiCall_userId.config)
+fi
 
 #get type of call
 echo "
