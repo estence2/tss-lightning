@@ -30,7 +30,53 @@ t1 () {shuf -n 1 ~/bin/tss.team}
 settings () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/settings/project"}
 
 #Get API key
-api () {head ~/bin/tss-lightning/api.key}
+key () {head ~/bin/apiCall.config}
+
+#Get API key
+key_userId () {head ~/bin/apiCall_userId.config}
+
+#Open the "All accounts with csm" google doc
+arr () {open -n -a "Google Chrome" --args "https://docs.google.com/spreadsheets/d/1kC9nRLxNUXgyLpAUlA-ryJDLo7ne4_gn2CG2x6is6Wg/edit#gid=923017211"} 
+
+#Outputs the deliverability questions that need to be answered to escalate a ticket to deliv
+deliv () {echo "Deliverability escalation questions:
+ * What's the Project name?
+ * Which is the mail stream / channel affected (e.g. marketing or transactional)?
+ * Which MTA are they using ( Sparkpost, Amazon SES, Sendgrid or Mailgun)?
+ * What are the sending domains?
+ * Are they on dedicated or shared IPs?
+    * You can check this yourself by going to the client's project, Settings and Sending Platforms / Message Channels   
+    * If Dedicated IP, which IP's are they using?
+ * Are all campaigns affected or only certain campaigns?
+ * Ask for recent campaign IDs (no older than 2 weeks)
+ * Do they know when the issue started?
+ * Is the issue ongoing or is it now resolved?"}
+
+#Print a read me situation of what command line aliases are in this doc
+ help () {echo "\033[0;31mmyprj\033[0m *output project settings info and open template from project in new tab
+\033[0;31mhash\033[0m  *256 hash any input. will only accept a single input. spaces/new lines will be ignored
+\033[0;31mself\033[0m  *256 hash your own email, can add a number for +# alias
+\033[0;31mb2a\033[0m   *change a boss link to an app link to share with customers!
+\033[0;31ma2b\033[0m   *change an app link to a boss link for easy boss access!
+\033[0;31ma2b_open\033[0m *change an app link to a boss link and open the link!
+\033[0;31mblobby\033[0m *follow the prompts to create and open a blobby url! 
+      *useful for email esp issues! 
+      *automatically opens the blobby url in your default browser
+\033[0;31mlog\033[0m   *remove and replace annoying log characters 
+      *make more legible - not perfect JSON by any means!! 
+      *output and open a text file with the log info in it - allows you to easily compare multiple logs
+\033[0;31mcheck_date MM/dd/YYYY\033[0m *check if a given date is x number of days from today - ever wondered if a date was on or after 60 days ago? Today is your lucky day!
+\033[0;31mzd\033[0m    *follow the prompts for an "easier" way to search zendesk
+\033[0;31me2\033[0m    *create simple e2 queries by following the prompts 
+      *enter unhashed email - this will do the work for you! 
+      *automatically opens e2 in Google Chrome browser with your search populated!
+\033[0;31mkube\033[0m  *same as e2 but for kube! 
+      *enter as much or as little info as you'd like & rest!
+\033[0;31mvisitors_in_node\033[0m *get visitors in a journey tile
+\033[0;31mapi_call\033[0m *make simple API calls to test in your project"
+ }
+
+remove_commas () {sed -i '' -e 's/,//g' $1}
 
 ###########################################################
 #1. Get to my project - replace with a link to a template in your project!
@@ -39,6 +85,13 @@ myprj () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/
 echo "Cluster ID: 24
 Project ID: 14523
 Organization ID: 1344"}
+
+#1.1 My UUID Project
+myprj_uuid () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/snippet/114303/edit"
+echo "Cluster ID: 24
+Project ID: 19266
+Organization ID: 1344"}
+
 
 #2. Hash 256 - output SHA-256 given any single input
 #hash <email>
@@ -119,4 +172,9 @@ visitors_in_node () {
 #12. make simple API calls to your project
 api_call () {
   bash ~/bin/apiCall.zsh
+}
+
+#13. open datadog kafka dashboard
+kafka () {
+  bash ~/bin/kafka.zsh
 }
