@@ -191,3 +191,14 @@ api_call () {
 kafka () {
   bash ~/bin/kafka.zsh
 }
+
+#14. Alfred commands
+list () {echo "https://boss.prd-itbl.co/segmentation?emailListId=$1" | xargs open}
+
+campaign () {echo "https://boss.prd-itbl.co/analytics/campaign?campaignId=$1" | xargs open}
+
+journey () {echo "https://boss.prd-itbl.co/workflows/$1/edit?mode=beta&workflowType=Published" | xargs open}
+
+template () {echo "https://boss.prd-itbl.co/templates/edit?templateId=$1" | xargs open}
+
+user () {echo "https://boss.prd-itbl.co/users/profiles/$1/fields" | xargs open}
