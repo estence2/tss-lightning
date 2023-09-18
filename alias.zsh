@@ -1,5 +1,17 @@
 #Alias file to share with team
 
+#Enter a test template id (replace 1234):
+template=1234
+
+#paste your project info where it says project info here
+project_info="
+project info here
+"
+
+#enter your email here
+email=ellen.stence@iterable.com
+
+###############################################
 #Functions I like to use
 #history
 h () {history}
@@ -81,17 +93,17 @@ remove_commas () {sed -i '' -e 's/,//g' $1}
 ###########################################################
 #1. Get to my project - replace with a link to a template in your project!
 #myprj
-myprj () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/editor?templateId=7602693"
-echo "Cluster ID: 24
-Project ID: 14523
-Organization ID: 1344"}
+myprj () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/editor?templateId=$template"
+echo "$project_info"}
 
+<<comment
+#Optional: you can do the same thing for a uuid based project
 #1.1 My UUID Project
 myprj_uuid () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/snippet/114303/edit"
 echo "Cluster ID: 24
 Project ID: 19266
 Organization ID: 1344"}
-
+comment
 
 #2. Hash 256 - output SHA-256 given any single input
 #hash <email>
@@ -99,12 +111,13 @@ hash () {echo -n "$1" | shasum -a 256 | awk '{print $1}'}
 
 #3. Hash your email - can optionally enter number for alias
 #self
+#email without alias
 self () {if [ $# -eq 0 ]; then
-#replace my email with your email
-echo -n "ellen.stence@iterable.com" | shasum -a 256 | awk '{print $1}'
+echo -n "$email" | shasum -a 256 | awk '{print $1}'
 else
-#replace my email with your email, do not touch: +$1
-echo -n "ellen.stence+$1@iterable.com" | shasum -a 256  | awk '{print $1}'
+#email includes alias. get root of email (first.last) + alias @iterable.com
+email_root=$(echo "$email" | awk -F@ '{print $1}')
+echo -n "$email_root+$1@iterable.com" | shasum -a 256  | awk '{print $1}'
 fi}
 
 #4. boss url to app url
