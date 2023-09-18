@@ -85,7 +85,15 @@ deliv () {echo "Deliverability escalation questions:
 \033[0;31mkube\033[0m  *same as e2 but for kube! 
       *enter as much or as little info as you'd like & rest!
 \033[0;31mvisitors_in_node\033[0m *get visitors in a journey tile
-\033[0;31mapi_call\033[0m *make simple API calls to test in your project"
+\033[0;31mapi_call\033[0m *make simple API calls to test in your project
+\033[0;31mkafka\033[0m *check ingestion delay on a specific cluster
+\033[0;31mlist\033[0m *opens a list
+\033[0;31mcampaign\033[0m *opens a campaign
+\033[0;31mjourney\033[0m *opens a journey
+\033[0;31mtemplate\033[0m *opens a template
+\033[0;31muser\033[0m *opens a user
+\033[0;31msnippet\033[0m *opens a snippet
+"
  }
 
 remove_commas () {sed -i '' -e 's/,//g' $1}
@@ -202,3 +210,5 @@ journey () {echo "https://boss.prd-itbl.co/workflows/$1/edit?mode=beta&workflowT
 template () {echo "https://boss.prd-itbl.co/templates/edit?templateId=$1" | xargs open}
 
 user () {echo "https://boss.prd-itbl.co/users/profiles/$1/fields" | xargs open}
+
+snippet () {echo "https://boss.prd-itbl.co/templates/snippet/$1/edit" | xargs open}
