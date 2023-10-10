@@ -104,15 +104,6 @@ remove_commas () {sed -i '' -e 's/,//g' $1}
 myprj () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/editor?templateId=$template"
 echo "$project_info"}
 
-<<comment
-#Optional: you can do the same thing for a uuid based project
-#1.1 My UUID Project
-myprj_uuid () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/snippet/114303/edit"
-echo "Cluster ID: 24
-Project ID: 19266
-Organization ID: 1344"}
-comment
-
 #2. Hash 256 - output SHA-256 given any single input
 #hash <email>
 hash () {echo -n "$1" | shasum -a 256 | awk '{print $1}'}
