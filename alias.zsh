@@ -1,17 +1,11 @@
 #Alias file to share with team
 
-#Enter a test template id (replace 1234):
-template=1234
-
-#paste your project info where it says project info here
 project_info="
-project info here
+Cluster ID: 24
+Project ID: 14523
+Organization ID: 1344
 "
 
-#enter your email here
-email=ellen.stence@iterable.com
-
-###############################################
 #Functions I like to use
 #history
 h () {history}
@@ -96,25 +90,44 @@ deliv () {echo "Deliverability escalation questions:
 "
  }
 
-remove_commas () {sed -i '' -e 's/,//g' $1}
+remove_commas () {echo "$1" | sed 's/,//g'}
+
+#Alfred commands
+list () {echo "https://boss.prd-itbl.co/segmentation?emailListId=$1" | xargs open}
+
+campaign () {echo "https://boss.prd-itbl.co/analytics/campaign?campaignId=$1" | xargs open}
+
+journey () {echo "https://boss.prd-itbl.co/workflows/$1/edit?mode=beta&workflowType=Published" | xargs open}
+
+template () {echo "https://boss.prd-itbl.co/templates/edit?templateId=$1" | xargs open}
+
+user () {echo "https://boss.prd-itbl.co/users/profiles/$1/fields" | xargs open}
+
+snippet () {echo "https://boss.prd-itbl.co/templates/snippet/$1/edit" | xargs open}
+
+#format as json - must have installed jq. see - https://docs.google.com/document/d/17l1MqJVxqAPsgAaf_-0wfgQTP6JA9jyJp61Ga0pfvaM/edit#heading=h.bd53n49kslf
+format_json () {echo '$1' | jq '.'}
 
 ###########################################################
 #1. Get to my project - replace with a link to a template in your project!
 #myprj
-myprj () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/editor?templateId=$template"
+myprj () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/editor?templateId=7602693"
 echo "$project_info"}
+
+#1.1 My UUID Project
+myprj_uuid () {open -n -a "Google Chrome" --args "https://boss.prd-itbl.co/templates/snippet/114303/edit"
+echo "Cluster ID: 24
+Project ID: 19266
+Organization ID: 1344"}
+
 
 #2. Hash 256 - output SHA-256 given any single input
 #hash <email>
 hash () {echo -n "$1" | shasum -a 256 | awk '{print $1}'}
 
-#3. Hash your email - can optionally enter number for alias
-#self
-#email without alias
 self () {if [ $# -eq 0 ]; then
 echo -n "$email" | shasum -a 256 | awk '{print $1}'
 else
-#email includes alias. get root of email (first.last) + alias @iterable.com
 email_root=$(echo "$email" | awk -F@ '{print $1}')
 echo -n "$email_root+$1@iterable.com" | shasum -a 256  | awk '{print $1}'
 fi}
@@ -191,15 +204,12 @@ kafka () {
   bash ~/bin/kafka.zsh
 }
 
-#14. Alfred commands
-list () {echo "https://boss.prd-itbl.co/segmentation?emailListId=$1" | xargs open}
+#14. format json
+format_json () {
+  bash ~/bin/jsonFormat.zsh
+}
 
-campaign () {echo "https://boss.prd-itbl.co/analytics/campaign?campaignId=$1" | xargs open}
-
-journey () {echo "https://boss.prd-itbl.co/workflows/$1/edit?mode=beta&workflowType=Published" | xargs open}
-
-template () {echo "https://boss.prd-itbl.co/templates/edit?templateId=$1" | xargs open}
-
-user () {echo "https://boss.prd-itbl.co/users/profiles/$1/fields" | xargs open}
-
-snippet () {echo "https://boss.prd-itbl.co/templates/snippet/$1/edit" | xargs open}
+#15. kubes log file to json
+log2json () {
+  bash ~/bin/log2json.zsh
+}
