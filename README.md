@@ -55,3 +55,15 @@ Aliases included but not limited to:
 
 12. api_call
   *make simple API calls to test in your project
+
+13. kafka
+  *open datadog kafka dashboard on specified cluster
+
+14. format_json
+  *format a json payload as json (like prettier in vscode)
+  *requires the jq package to be installed (https://jqlang.github.io/jq/)
+
+15. log2json
+  *takes a k8s log and outputs it as a json payload
+  *requires the jq package to be installed (https://jqlang.github.io/jq/)
+  *will only work for complete logs (not cutoff requests). if your request is cutoff, I suggest you use the `log` command & fix your payload (command 6) and then the `format_json` command (command 14)
