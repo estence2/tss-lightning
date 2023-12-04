@@ -92,18 +92,18 @@ deliv () {echo "Deliverability escalation questions:
 
 remove_commas () {echo "$1" | sed 's/,//g'}
 
-#Alfred commands
-list () {echo "https://boss.prd-itbl.co/segmentation?emailListId=$1" | xargs open}
+#Alfred commands, commas accepted
+list () {echo "https://boss.prd-itbl.co/segmentation?emailListId=$1" | sed 's/,//g' | xargs open}
 
-campaign () {echo "https://boss.prd-itbl.co/analytics/campaign?campaignId=$1" | xargs open}
+campaign () {echo "https://boss.prd-itbl.co/analytics/campaign?campaignId=$1" | sed 's/,//g' | xargs open}
 
-journey () {echo "https://boss.prd-itbl.co/workflows/$1/edit?mode=beta&workflowType=Published" | xargs open}
+journey () {echo "https://boss.prd-itbl.co/workflows/$1/edit?mode=beta&workflowType=Published" | sed 's/,//g' | xargs open}
 
-template () {echo "https://boss.prd-itbl.co/templates/edit?templateId=$1" | xargs open}
+template () {echo "https://boss.prd-itbl.co/templates/edit?templateId=$1" | sed 's/,//g' | xargs open}
 
-user () {echo "https://boss.prd-itbl.co/users/profiles/$1/fields" | xargs open}
+user () {echo "https://boss.prd-itbl.co/users/profiles/$1/fields" | sed 's/,//g' | xargs open}
 
-snippet () {echo "https://boss.prd-itbl.co/templates/snippet/$1/edit" | xargs open}
+snippet () {echo "https://boss.prd-itbl.co/templates/snippet/$1/edit" | sed 's/,//g' | xargs open}
 
 #format as json - must have installed jq. see - https://docs.google.com/document/d/17l1MqJVxqAPsgAaf_-0wfgQTP6JA9jyJp61Ga0pfvaM/edit#heading=h.bd53n49kslf
 format_json () {echo '$1' | jq '.'}
