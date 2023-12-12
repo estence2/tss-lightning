@@ -108,6 +108,9 @@ snippet () {echo "https://boss.prd-itbl.co/templates/snippet/$1/edit" | sed 's/,
 #format as json - must have installed jq. see - https://docs.google.com/document/d/17l1MqJVxqAPsgAaf_-0wfgQTP6JA9jyJp61Ga0pfvaM/edit#heading=h.bd53n49kslf
 format_json () {echo '$1' | jq '.'}
 
+#open zendesk ticket with number
+ticket () {open -n -a "Google Chrome" --args "https://iterable.zendesk.com/agent/tickets/$1"}
+
 ###########################################################
 #1. Get to my project - replace with a link to a template in your project!
 #myprj
