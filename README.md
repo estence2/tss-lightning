@@ -6,7 +6,7 @@ Save alias.zsh file to ~/.oh_my_zsh/custom
 
 Save other .zsh files to ~/bin/
 
-See MBO google sheets document on full demonstration - 
+See MBO google sheets document on full demonstration - https://docs.google.com/document/d/1b8Wn9OAb6wfUKP2TlEKY114jI8kXG5ptcu_M416i3s4/edit
 
 Aliases included but not limited to:
 1. myprj
