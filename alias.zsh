@@ -1,10 +1,14 @@
 #Alias file to share with team
+###############################
+#define email and project info
+email="ellen.stence@iterable.com"
 
 project_info="
 Cluster ID: 24
 Project ID: 14523
 Organization ID: 1344
 "
+###############################
 
 #Functions I like to use
 #history
