@@ -1,5 +1,5 @@
 #Alias file to share with team
-###############################
+
 #define email and project info
 email="ellen.stence@iterable.com"
 
@@ -8,8 +8,7 @@ Cluster ID: 24
 Project ID: 14523
 Organization ID: 1344
 "
-###############################
-
+######
 #Functions I like to use
 #history
 h () {history}
@@ -115,6 +114,9 @@ format_json () {echo '$1' | jq '.'}
 #open zendesk ticket with number
 ticket () {open -n -a "Google Chrome" --args "https://iterable.zendesk.com/agent/tickets/$1"}
 
+#print line numbers given a file
+line_number () {awk -F "\n" '{print NR, $0}' $1}
+
 ###########################################################
 #1. Get to my project - replace with a link to a template in your project!
 #myprj
@@ -149,6 +151,15 @@ a2b () {echo -n "$1\n" | sed 's/app.iterable.com/boss.prd-itbl.co/g'}
 
 #4.2 app url to boss url and open in new tab
 a2b_open () {echo -n "$1\n" | sed 's/app.iterable.com/boss.prd-itbl.co/g' | xargs open}
+
+#4.3 boss EU url to app url
+b2a_eu () {echo -n "$1\n" | sed 's/boss.eu-prd-itbl.co/app.iterable.com/g'}
+
+#4.4 app url to boss EU url
+a2b_eu () {echo -n "$1\n" | sed 's/app.iterable.com/boss.eu-prd-itbl.co/g'}
+
+#4.4app url to boss EU url and open in new tab
+a2b_open_eu () {echo -n "$1\n" | sed 's/app.iterable.com/boss.eu-prd-itbl.co/g' | xargs open}
 
 #5. make blobby url and open page
 #blobby
