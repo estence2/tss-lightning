@@ -12,18 +12,26 @@ Aliases included but not limited to:
 1. myprj
   *output project settings info and open template from project in new tab
     ***Must change lines 6-9 to reflect your own email address***
-3. hash <input>
+2. hash <input>
   *256 hash any input. will only accept a single input. spaces/new lines will be ignored
 
-4. self <optional number>
+3. self <optional number>
   *256 hash your own email, can add a number for +# alias
   ***Must change line 4 to reflect your own email address***
 
-5. b2a <url>
+4.1 b2a <url>
   *change a boss link to an app link to share with customers!
 
 4.1 a2b <url>
   *change an app link to a boss link for easy boss access!
+4.2 a2b_open <url> 
+  * open an app link in boss
+4.3 b2a_eu <url>
+  * change a boss EU link to an app link
+4.4 a2b_eu <url>
+  * change an app link to a boss EU link
+4.5 a2b_open_eu <url>
+  * open an app link in EU boss
 
 5. blobby
   *follow the prompts to create and open a blobby url!
