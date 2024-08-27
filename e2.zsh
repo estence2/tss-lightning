@@ -68,4 +68,4 @@ $main_query
 
 Redirecting you to events stream..."
 #open e2 search, must use this format or else # gets url encoded to %23
-open -n -a "Google Chrome" --args "https://logs.mon-itbl.co/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_a=(columns:!(),filters:!(),index:'767d3500-5645-11e9-b1e6-07895cd9f6f5',interval:auto,query:(language:kuery,query:'$main_query'),sort:!(!('@timestamp',desc)))"
+open -n -a "Google Chrome" --args "https://logs.mon-itbl.co/app/discover#/?_g=(filters:!(),refreshInterval:(pause:!t,value:0),time:(from:now-15m,to:now))&_a=(columns:!(),filters:!(),index:'7691e680-568f-11ef-9c67-0528068d41e0',interval:auto,query:(language:kuery,query:'$main_query'),sort:!(!('@timestamp',desc)))"
